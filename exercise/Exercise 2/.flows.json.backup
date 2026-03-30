@@ -1,0 +1,114 @@
+[
+    {
+        "id": "fe2f55ec5459e4d0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "04a68f0d9ed7731b",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d72c8d53f66c80ed",
+        "type": "http in",
+        "z": "fe2f55ec5459e4d0",
+        "name": "Telemetry",
+        "url": "/api/sensor",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 180,
+        "wires": [
+            [
+                "00d73b3808dbfb83",
+                "385c9074a6742f92"
+            ]
+        ]
+    },
+    {
+        "id": "00d73b3808dbfb83",
+        "type": "http response",
+        "z": "fe2f55ec5459e4d0",
+        "name": "Receive",
+        "statusCode": "200",
+        "headers": {},
+        "x": 380,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "385c9074a6742f92",
+        "type": "debug",
+        "z": "fe2f55ec5459e4d0",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4d938edee9d91b9d",
+        "type": "http response",
+        "z": "04a68f0d9ed7731b",
+        "name": "Receive",
+        "statusCode": "200",
+        "headers": {},
+        "x": 500,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a6bffb73535713eb",
+        "type": "function",
+        "z": "04a68f0d9ed7731b",
+        "name": "function",
+        "func": "msg.payload = {\n    status: \"Dina success\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "4d938edee9d91b9d"
+            ]
+        ]
+    },
+    {
+        "id": "268c20eef5fc947a",
+        "type": "http in",
+        "z": "04a68f0d9ed7731b",
+        "name": "Telemetry (diss)",
+        "url": "/api/sensor",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "a6bffb73535713eb"
+            ]
+        ]
+    }
+]
